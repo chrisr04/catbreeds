@@ -3,6 +3,7 @@ import 'package:catbreeds/data/data.dart';
 import 'package:catbreeds/ui/home/home.dart';
 import 'package:catbreeds/domain/domain.dart';
 import 'package:catbreeds/core/http/http_client.dart';
+import 'package:http/http.dart';
 
 part 'bloc_dependencies.dart';
 part 'repository_dependencies.dart';
@@ -16,7 +17,9 @@ class CoreDependencies extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return HttpDependency(
-      http: HttpClient(),
+      http: HttpClient(
+        client: Client(),
+      ),
       child: child,
     );
   }

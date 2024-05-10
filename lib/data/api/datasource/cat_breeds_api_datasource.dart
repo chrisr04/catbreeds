@@ -18,7 +18,9 @@ class CatBreedsApiDataSource {
     return catBreeds;
   }
 
-  Future<List<CatBreedApiModel>> searchCatBreed({required String query}) async {
+  Future<List<CatBreedApiModel>> searchCatBreeds({
+    required String query,
+  }) async {
     final uri = Uri.parse('${http.baseUrl}/breeds/search?q=$query');
     final response = await http.client.get(uri, headers: http.headers);
     final body = jsonDecode(response.body) as List;

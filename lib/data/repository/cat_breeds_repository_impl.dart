@@ -29,7 +29,7 @@ class CatBreedsRepositoryImpl implements CatBreedsRepository {
   @override
   Future<List<CatBreed>> searchCatBreeds({required String query}) async {
     try {
-      final catBreeds = await api.searchCatBreed(query: query);
+      final catBreeds = await api.searchCatBreeds(query: query);
       return catBreeds;
     } on SocketException {
       throw NoInternetException();
