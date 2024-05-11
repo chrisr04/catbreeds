@@ -25,6 +25,8 @@ void main() {
         adaptability: 3,
         origin: 'Persia',
         lifeSpan: '15-20',
+        altNames: 'Fox Cat, Long-Haired Abyssinian',
+        temperament: 'Loyal, Inquisitive, Friendly, Quiet, Gentle',
         image: catImage,
       );
 
@@ -35,6 +37,11 @@ void main() {
       expect(catBreed.adaptability, 3);
       expect(catBreed.origin, 'Persia');
       expect(catBreed.lifeSpan, '15-20');
+      expect(catBreed.altNames, 'Fox Cat, Long-Haired Abyssinian');
+      expect(
+        catBreed.temperament,
+        'Loyal, Inquisitive, Friendly, Quiet, Gentle',
+      );
       expect(catBreed.image, catImage);
     });
   });

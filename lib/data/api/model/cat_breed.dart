@@ -10,6 +10,8 @@ class CatBreedApiModel extends CatBreed {
     required super.adaptability,
     required super.origin,
     required super.lifeSpan,
+    required super.altNames,
+    required super.temperament,
     required super.image,
   });
 
@@ -22,6 +24,8 @@ class CatBreedApiModel extends CatBreed {
         adaptability: json['adaptability'] ?? 0,
         origin: json['origin'] ?? '',
         lifeSpan: json['life_span'] ?? '',
+        altNames: json['alt_names'] ?? '',
+        temperament: json['temperament'] ?? '',
         image: CatImageApiModel.fromJson(json['image'] ?? {}),
       );
 }

@@ -14,6 +14,8 @@ void main() {
     adaptability: 3,
     origin: 'Persia',
     lifeSpan: '15-20',
+    altNames: 'Fox Cat, Long-Haired Abyssinian',
+    temperament: 'Loyal, Inquisitive, Friendly, Quiet, Gentle',
     image: CatImage(id: '123', url: 'http://example.com/image.jpg'),
   );
 

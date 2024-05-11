@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:catbreeds/core/core.dart';
 import 'package:catbreeds/shared/values/assets.dart';
+import 'package:catbreeds/shared/values/strings.dart';
 import 'package:catbreeds/ui/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:mocktail/mocktail.dart';
@@ -35,7 +36,6 @@ Route<dynamic>? mockRouteGenerator(RouteSettings setting) => MaterialPageRoute(
 void main() {
   late MockHomeBloc mockHomeBloc;
   late MockNavigatorObserver mockNavigatorObserver;
-  const catImage = CatImage(id: '123', url: 'http://example.com/image.jpg');
   const catBreeds = [
     CatBreed(
       id: '1',
@@ -45,7 +45,9 @@ void main() {
       adaptability: 3,
       origin: 'Persia',
       lifeSpan: '15-20',
-      image: catImage,
+      altNames: 'Fox Cat, Long-Haired Abyssinian',
+      temperament: 'Loyal, Inquisitive, Friendly, Quiet, Gentle',
+      image: CatImage(id: '123', url: 'http://example.com/image.jpg'),
     ),
     CatBreed(
       id: '2',
@@ -54,8 +56,10 @@ void main() {
       intelligence: 5,
       adaptability: 3,
       origin: 'United States',
+      altNames: 'Fox Cat, Long-Haired Abyssinian',
+      temperament: 'Loyal, Inquisitive, Friendly, Quiet, Gentle',
       lifeSpan: '15-20',
-      image: catImage,
+      image: CatImage(id: '123', url: 'http://example.com/image.jpg'),
     ),
   ];
 
@@ -161,9 +165,39 @@ void main() {
         ),
       );
 
-      await tester.pumpAndSettle();
-
       final textFinder = find.text('Test Error');
+
+      expect(textFinder, findsOneWidget);
+    });
+
+    testWidgets('show no result message', (WidgetTester tester) async {
+      when(() => mockHomeBloc.state).thenReturn(
+        const HomeLoadedState(
+          HomeStateData(
+            catBreeds: [],
+            isLastPage: true,
+          ),
+        ),
+      );
+
+      await mockNetworkImages(
+        () => tester.pumpWidget(
+          HomeBlocDependency(
+            bloc: mockHomeBloc,
+            child: const MaterialApp(
+              home: Scaffold(
+                body: Column(
+                  children: [
+                    HomeCatBreedList(),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+
+      final textFinder = find.text(AppStrings.noResultFound);
 
       expect(textFinder, findsOneWidget);
     });

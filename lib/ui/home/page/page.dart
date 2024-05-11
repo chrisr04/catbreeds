@@ -8,6 +8,7 @@ import 'package:catbreeds/ui/home/bloc/home_bloc.dart';
 
 part 'widgets/search_bar.dart';
 part 'widgets/cat_breed_list.dart';
+part 'widgets/no_result.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

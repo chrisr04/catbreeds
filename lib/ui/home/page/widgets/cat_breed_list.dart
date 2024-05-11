@@ -16,6 +16,7 @@ class HomeCatBreedList extends StatelessWidget {
 
           final state = snapshot.data!;
           final catBreeds = state.data.catBreeds;
+          final isLastPage = state.data.isLastPage;
 
           return switch (state) {
             HomeLoadingState() => const Center(
@@ -24,39 +25,41 @@ class HomeCatBreedList extends StatelessWidget {
             HomeFailureState() => ErrorView(
                 message: state.message,
               ),
-            _ => PaginatedListView(
-                isLastPage: state.data.isLastPage,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: AppSpacing.md,
-                  vertical: AppSpacing.sl,
-                ),
-                onLoadNextPage: () {
-                  homeBloc.events.add(
-                    const LoadNextCatBreedsEvent(),
-                  );
-                },
-                children: catBreeds.map(
-                  (catBreed) {
-                    return FadeAnimation(
-                      child: CatBreedCard(
-                        title: catBreed.name,
-                        image: catBreed.image.url,
-                        tag: catBreed.id,
-                        rightLabel: AppStrings.more,
-                        rows: [
-                          CatBreedRowItem(
-                            labelLeft: AppStrings.originCountry,
-                            contentLeft: catBreed.origin,
-                            labelRight: AppStrings.intelligence,
-                            contentRight: catBreed.intelligence.toString(),
+            _ => catBreeds.isEmpty && isLastPage
+                ? const NoResult()
+                : PaginatedListView(
+                    isLastPage: state.data.isLastPage,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppSpacing.md,
+                      vertical: AppSpacing.sl,
+                    ),
+                    onLoadNextPage: () {
+                      homeBloc.events.add(
+                        const LoadNextCatBreedsEvent(),
+                      );
+                    },
+                    children: catBreeds.map(
+                      (catBreed) {
+                        return FadeAnimation(
+                          child: CatBreedCard(
+                            title: catBreed.name,
+                            image: catBreed.image.url,
+                            tag: catBreed.id,
+                            rightLabel: AppStrings.more,
+                            rows: [
+                              CatBreedRowItem(
+                                labelLeft: AppStrings.originCountry,
+                                contentLeft: catBreed.origin,
+                                labelRight: AppStrings.intelligence,
+                                contentRight: catBreed.intelligence.toString(),
+                              ),
+                            ],
+                            onTap: () => _navigateToDetail(context, catBreed),
                           ),
-                        ],
-                        onTap: () => _navigateToDetail(context, catBreed),
-                      ),
-                    );
-                  },
-                ).toList(),
-              )
+                        );
+                      },
+                    ).toList(),
+                  )
           };
         },
       ),

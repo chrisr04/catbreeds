@@ -33,6 +33,8 @@ void main() {
         'adaptability': 3,
         'origin': 'Iran',
         'life_span': '15-20',
+        'alt_names': 'Fox Cat, Long-Haired Abyssinian',
+        'temperament': 'Loyal, Inquisitive, Friendly, Quiet, Gentle',
         'image': {'url': 'https://example.com/persian.jpg'},
       };
 
@@ -48,6 +50,11 @@ void main() {
       expect(catBreed.adaptability, equals(3));
       expect(catBreed.origin, equals('Iran'));
       expect(catBreed.lifeSpan, equals('15-20'));
+      expect(catBreed.altNames, equals('Fox Cat, Long-Haired Abyssinian'));
+      expect(
+        catBreed.temperament,
+        equals('Loyal, Inquisitive, Friendly, Quiet, Gentle'),
+      );
       expect(catBreed.image.url, equals('https://example.com/persian.jpg'));
     });
   });

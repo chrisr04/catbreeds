@@ -9,6 +9,8 @@ class CatBreed {
     required this.adaptability,
     required this.origin,
     required this.lifeSpan,
+    required this.altNames,
+    required this.temperament,
     required this.image,
   });
 
@@ -19,5 +21,7 @@ class CatBreed {
   final int adaptability;
   final String origin;
   final String lifeSpan;
+  final String altNames;
+  final String temperament;
   final CatImage image;
 }

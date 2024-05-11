@@ -11,6 +11,8 @@ class CatBreedAttributes extends StatelessWidget {
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(
           horizontal: AppSpacing.md,
+        ).copyWith(
+          bottom: AppSpacing.lg,
         ),
         child: Column(
           children: [
@@ -26,8 +28,15 @@ class CatBreedAttributes extends StatelessWidget {
             BreedAttributeRow(
               labelLeft: AppStrings.lifeSpan,
               contentLeft: catBreed.lifeSpan,
-              labelRight: AppStrings.adaptability,
-              contentRight: catBreed.adaptability.toString(),
+              labelRight: AppStrings.temperament,
+              contentRight: catBreed.temperament,
+            ),
+            const SpacingM(),
+            BreedAttributeRow(
+              labelLeft: AppStrings.adaptability,
+              contentLeft: catBreed.adaptability.toString(),
+              labelRight: AppStrings.alternativeNames,
+              contentRight: catBreed.altNames,
             ),
           ],
         ),
@@ -54,9 +63,9 @@ class BreedAttributeRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
-          flex: 2,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -70,7 +79,7 @@ class BreedAttributeRow extends StatelessWidget {
             ],
           ),
         ),
-        const SpacingM(axis: SpacingAxis.x),
+        const SpacingXL(axis: SpacingAxis.x),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
