@@ -1,6 +1,6 @@
 # Catbreeds
 
-Catbreeds es un aplicación creada en Flutter (Versión 3.19.6) y utiliza una implementación del patrón BloC para el manejo de estados, el paquete [http](https://pub.dev/packages/http) para las peticiones de red, InheritedWidgets para la inyección de dependencias y un enfoque de Clean Architecture para la estructura del proyecto, permitiendo un desarrollo escalable a lo largo del tiempo.
+Catbreeds es un aplicación creada en Flutter (Versión 3.19.6) que utiliza una implementación del patrón BloC para el manejo de estados, el paquete [http](https://pub.dev/packages/http) para las peticiones de red, InheritedWidgets para la inyección de dependencias y un enfoque de Clean Architecture para la estructura del proyecto. Esto con el fin de mantener un desarrollo escalable a lo largo del tiempo.
 
 ## Instrucciones de uso
 

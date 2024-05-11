@@ -14,6 +14,7 @@ class DetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: DetailAppBar(),
       body: Column(
         children: [

@@ -1,4 +1,5 @@
 import 'package:catbreeds/domain/domain.dart';
+import 'package:catbreeds/shared/values/strings.dart';
 import 'package:catbreeds/shared/widgets/widgets.dart';
 import 'package:catbreeds/ui/detail/page/page.dart';
 import 'package:flutter/material.dart';
@@ -52,10 +53,15 @@ void main() {
       ),
     );
 
+    final lifeSpan =
+        '${catBreed.lifeSpan} ${catBreed.lifeSpan.isNotEmpty ? AppStrings.years : ''}';
+
     expect(find.text(catBreed.description), findsOneWidget);
     expect(find.text(catBreed.origin), findsOneWidget);
     expect(find.text(catBreed.intelligence.toString()), findsOneWidget);
-    expect(find.text(catBreed.lifeSpan), findsOneWidget);
+    expect(find.text(lifeSpan), findsOneWidget);
+    expect(find.text(catBreed.altNames), findsOneWidget);
+    expect(find.text(catBreed.temperament), findsOneWidget);
   });
 
   testWidgets('CatImageView widget test', (WidgetTester tester) async {

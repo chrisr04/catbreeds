@@ -6,7 +6,8 @@ class CatBreedAttributes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final catBreed = ModalRoute.of(context)!.settings.arguments as CatBreed;
-
+    final lifeSpan =
+        '${catBreed.lifeSpan} ${catBreed.lifeSpan.isNotEmpty ? AppStrings.years : ''}';
     return Expanded(
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(
@@ -27,7 +28,7 @@ class CatBreedAttributes extends StatelessWidget {
             const SpacingM(),
             BreedAttributeRow(
               labelLeft: AppStrings.lifeSpan,
-              contentLeft: catBreed.lifeSpan,
+              contentLeft: lifeSpan,
               labelRight: AppStrings.temperament,
               contentRight: catBreed.temperament,
             ),
@@ -73,6 +74,7 @@ class BreedAttributeRow extends StatelessWidget {
                 labelLeft,
                 weight: FontWeight.w700,
               ),
+              const SpacingXXS(),
               TextSmall(
                 contentLeft,
               ),
@@ -88,6 +90,7 @@ class BreedAttributeRow extends StatelessWidget {
                 labelRight,
                 weight: FontWeight.w700,
               ),
+              const SpacingXXS(),
               TextSmall(
                 contentRight,
               ),

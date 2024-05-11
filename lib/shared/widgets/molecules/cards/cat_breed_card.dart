@@ -123,6 +123,7 @@ class CatBreedCard extends StatelessWidget {
                           row.labelLeft ?? '',
                           weight: FontWeight.w700,
                         ),
+                        const SpacingXXS(),
                         TextSmall(
                           row.contentLeft ?? '',
                         ),
@@ -137,6 +138,7 @@ class CatBreedCard extends StatelessWidget {
                           row.labelRight ?? '',
                           weight: FontWeight.w700,
                         ),
+                        const SpacingXXS(),
                         TextSmall(
                           row.contentRight ?? '',
                         ),
