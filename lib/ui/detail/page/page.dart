@@ -4,7 +4,7 @@ import 'package:catbreeds/shared/values/assets.dart';
 import 'package:catbreeds/shared/values/strings.dart';
 import 'package:catbreeds/shared/widgets/widgets.dart';
 
-part 'widgets/cat_image.dart';
+part 'widgets/cat_image_view.dart';
 part 'widgets/cat_breed_attributes.dart';
 part 'widgets/app_bar.dart';
 
@@ -17,7 +17,7 @@ class DetailPage extends StatelessWidget {
       appBar: DetailAppBar(),
       body: Column(
         children: [
-          CatImage(),
+          CatImageView(),
           CatBreedAttributes(),
         ],
       ),

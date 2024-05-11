@@ -24,7 +24,7 @@ void main() {
                 image: image,
                 rows: rows,
                 rightLabel: rightLabel,
-                onTapRightLabel: () {
+                onTap: () {
                   onTapRightLabelCalled = true;
                 },
               ),

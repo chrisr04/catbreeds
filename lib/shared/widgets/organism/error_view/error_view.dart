@@ -1,7 +1,8 @@
-part of '../page.dart';
+import 'package:flutter/material.dart';
+import 'package:catbreeds/shared/widgets/widgets.dart';
 
-class ErrorMessage extends StatelessWidget {
-  const ErrorMessage({super.key, required this.message});
+class ErrorView extends StatelessWidget {
+  const ErrorView({super.key, required this.message});
 
   final String message;
 

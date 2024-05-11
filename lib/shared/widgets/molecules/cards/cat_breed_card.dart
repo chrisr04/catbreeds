@@ -22,7 +22,7 @@ class CatBreedCard extends StatelessWidget {
     required this.image,
     required this.rows,
     required this.rightLabel,
-    required this.onTapRightLabel,
+    required this.onTap,
     this.tag,
   });
 
@@ -31,42 +31,43 @@ class CatBreedCard extends StatelessWidget {
   final String rightLabel;
   final String image;
   final List<CatBreedRowItem> rows;
-  final VoidCallback onTapRightLabel;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(
-        vertical: AppSpacing.sm,
-      ),
-      padding: const EdgeInsets.symmetric(
-        vertical: AppSpacing.md,
-        horizontal: AppSpacing.md,
-      ),
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.background,
-        borderRadius: BorderRadius.circular(10.0),
-        boxShadow: [
-          BoxShadow(
-            color: Theme.of(context).colorScheme.onBackground.withOpacity(0.08),
-            offset: const Offset(0.0, 8.0),
-            blurRadius: 16.0,
-          ),
-        ],
-      ),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Expanded(
-                child: TextHeading6(
-                  title,
-                  weight: FontWeight.w600,
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        margin: const EdgeInsets.symmetric(
+          vertical: AppSpacing.sm,
+        ),
+        padding: const EdgeInsets.symmetric(
+          vertical: AppSpacing.md,
+          horizontal: AppSpacing.md,
+        ),
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.background,
+          borderRadius: BorderRadius.circular(10.0),
+          boxShadow: [
+            BoxShadow(
+              color:
+                  Theme.of(context).colorScheme.onBackground.withOpacity(0.08),
+              offset: const Offset(0.0, 8.0),
+              blurRadius: 16.0,
+            ),
+          ],
+        ),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Expanded(
+                  child: TextHeading6(
+                    title,
+                    weight: FontWeight.w600,
+                  ),
                 ),
-              ),
-              InkWell(
-                onTap: onTapRightLabel,
-                child: Row(
+                Row(
                   children: [
                     TextMedium(
                       rightLabel,
@@ -79,73 +80,73 @@ class CatBreedCard extends StatelessWidget {
                     ),
                   ],
                 ),
-              ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: AppSpacing.md,
-            ),
-            child: Hero(
-              tag: tag ?? UniqueKey(),
-              child: ClipRRect(
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(15.0),
-                ),
-                child: image.isNotEmpty
-                    ? Image.network(
-                        image,
-                        height: 300.0,
-                        fit: BoxFit.cover,
-                      )
-                    : SizedBox(
-                        height: 300.0,
-                        child: ColoredBox(
-                          color: Theme.of(context).colorScheme.onSurface,
-                          child: const AppAssetImage(
-                            path: AppAssets.catbreedsWhiteLogo,
-                          ),
-                        ),
-                      ),
-              ),
-            ),
-          ),
-          for (final row in rows)
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  flex: 2,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextMedium(
-                        row.labelLeft ?? '',
-                        weight: FontWeight.w700,
-                      ),
-                      TextSmall(
-                        row.contentLeft ?? '',
-                      ),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextMedium(
-                        row.labelRight ?? '',
-                        weight: FontWeight.w700,
-                      ),
-                      TextSmall(
-                        row.contentRight ?? '',
-                      ),
-                    ],
-                  ),
-                ),
               ],
             ),
-        ],
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: AppSpacing.md,
+              ),
+              child: Hero(
+                tag: tag ?? UniqueKey(),
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(15.0),
+                  ),
+                  child: image.isNotEmpty
+                      ? Image.network(
+                          image,
+                          height: 300.0,
+                          fit: BoxFit.cover,
+                        )
+                      : SizedBox(
+                          height: 300.0,
+                          child: ColoredBox(
+                            color: Theme.of(context).colorScheme.onSurface,
+                            child: const AppAssetImage(
+                              path: AppAssets.catbreedsWhiteLogo,
+                            ),
+                          ),
+                        ),
+                ),
+              ),
+            ),
+            for (final row in rows)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    flex: 2,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        TextMedium(
+                          row.labelLeft ?? '',
+                          weight: FontWeight.w700,
+                        ),
+                        TextSmall(
+                          row.contentLeft ?? '',
+                        ),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        TextMedium(
+                          row.labelRight ?? '',
+                          weight: FontWeight.w700,
+                        ),
+                        TextSmall(
+                          row.contentRight ?? '',
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+          ],
+        ),
       ),
     );
   }

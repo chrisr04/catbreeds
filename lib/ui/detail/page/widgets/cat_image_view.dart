@@ -1,7 +1,7 @@
 part of '../page.dart';
 
-class CatImage extends StatelessWidget {
-  const CatImage({super.key});
+class CatImageView extends StatelessWidget {
+  const CatImageView({super.key});
 
   @override
   Widget build(BuildContext context) {

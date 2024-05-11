@@ -21,7 +21,7 @@ class HomeCatBreedList extends StatelessWidget {
             HomeLoadingState() => const Center(
                 child: CircularProgressIndicator(),
               ),
-            HomeFailureState() => ErrorMessage(
+            HomeFailureState() => ErrorView(
                 message: state.message,
               ),
             _ => PaginatedListView(
@@ -51,8 +51,7 @@ class HomeCatBreedList extends StatelessWidget {
                             contentRight: catBreed.intelligence.toString(),
                           ),
                         ],
-                        onTapRightLabel: () =>
-                            _navigateToDetail(context, catBreed),
+                        onTap: () => _navigateToDetail(context, catBreed),
                       ),
                     );
                   },
