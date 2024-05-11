@@ -6,5 +6,5 @@ export 'atoms/text/text.dart';
 export 'atoms/images/network_image.dart';
 export 'atoms/images/asset_image.dart';
 export 'molecules/cards/cat_breed_card.dart';
-export 'organism/paginated_list_view/paginated_list_view.dart';
+export 'organism/paginated_sliver_list_view/paginated_sliver_list_view.dart';
 export 'organism/error_view/error_view.dart';

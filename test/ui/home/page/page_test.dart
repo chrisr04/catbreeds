@@ -35,6 +35,7 @@ Route<dynamic>? mockRouteGenerator(RouteSettings setting) => MaterialPageRoute(
 
 void main() {
   late MockHomeBloc mockHomeBloc;
+  late ScrollController scrollController;
   late MockNavigatorObserver mockNavigatorObserver;
   const catBreeds = [
     CatBreed(
@@ -66,6 +67,7 @@ void main() {
   setUp(() {
     mockHomeBloc = MockHomeBloc();
     mockNavigatorObserver = MockNavigatorObserver();
+    scrollController = ScrollController();
     registerFallbackValue(FakeRoute());
   });
 
@@ -79,11 +81,13 @@ void main() {
         () => tester.pumpWidget(
           HomeBlocDependency(
             bloc: mockHomeBloc,
-            child: const MaterialApp(
+            child: MaterialApp(
               home: Scaffold(
-                body: Column(
-                  children: [
-                    HomeCatBreedList(),
+                body: CustomScrollView(
+                  slivers: [
+                    HomeCatBreedList(
+                      scrollController: scrollController,
+                    ),
                   ],
                 ),
               ),
@@ -115,10 +119,12 @@ void main() {
             child: MaterialApp(
               onGenerateRoute: mockRouteGenerator,
               navigatorObservers: [mockNavigatorObserver],
-              home: const Scaffold(
-                body: Column(
-                  children: [
-                    HomeCatBreedList(),
+              home: Scaffold(
+                body: CustomScrollView(
+                  slivers: [
+                    HomeCatBreedList(
+                      scrollController: scrollController,
+                    ),
                   ],
                 ),
               ),
@@ -152,11 +158,13 @@ void main() {
         () => tester.pumpWidget(
           HomeBlocDependency(
             bloc: mockHomeBloc,
-            child: const MaterialApp(
+            child: MaterialApp(
               home: Scaffold(
-                body: Column(
-                  children: [
-                    HomeCatBreedList(),
+                body: CustomScrollView(
+                  slivers: [
+                    HomeCatBreedList(
+                      scrollController: scrollController,
+                    ),
                   ],
                 ),
               ),
@@ -184,11 +192,13 @@ void main() {
         () => tester.pumpWidget(
           HomeBlocDependency(
             bloc: mockHomeBloc,
-            child: const MaterialApp(
+            child: MaterialApp(
               home: Scaffold(
-                body: Column(
-                  children: [
-                    HomeCatBreedList(),
+                body: CustomScrollView(
+                  slivers: [
+                    HomeCatBreedList(
+                      scrollController: scrollController,
+                    ),
                   ],
                 ),
               ),
@@ -203,7 +213,7 @@ void main() {
     });
   });
 
-  group('HomeSearchBar', () {
+  group('HomeHeader', () {
     testWidgets('enter query and search', (WidgetTester tester) async {
       when(() => mockHomeBloc.state).thenReturn(
         const HomeLoadedState(
@@ -218,9 +228,9 @@ void main() {
           bloc: mockHomeBloc,
           child: const MaterialApp(
             home: Scaffold(
-              body: Column(
-                children: [
-                  HomeSearchBar(),
+              body: CustomScrollView(
+                slivers: [
+                  HomeHeader(),
                 ],
               ),
             ),

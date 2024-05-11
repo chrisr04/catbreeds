@@ -1,7 +1,7 @@
-import 'package:catbreeds/shared/values/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:catbreeds/core/core.dart';
 import 'package:catbreeds/domain/domain.dart';
+import 'package:catbreeds/shared/values/assets.dart';
 import 'package:catbreeds/shared/values/strings.dart';
 import 'package:catbreeds/shared/widgets/widgets.dart';
 import 'package:catbreeds/ui/home/bloc/home_bloc.dart';
@@ -9,6 +9,8 @@ import 'package:catbreeds/ui/home/bloc/home_bloc.dart';
 part 'widgets/search_bar.dart';
 part 'widgets/cat_breed_list.dart';
 part 'widgets/no_result.dart';
+part 'widgets/header.dart';
+part 'widgets/header_logo.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -19,6 +21,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late final _homeBloc = HomeBlocDependency.of(context);
+  final scrollController = ScrollController();
 
   @override
   void initState() {
@@ -35,12 +38,15 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Column(
-        children: [
-          HomeSearchBar(),
-          HomeCatBreedList(),
+      body: CustomScrollView(
+        controller: scrollController,
+        slivers: [
+          const HomeHeader(),
+          HomeCatBreedList(
+            scrollController: scrollController,
+          ),
         ],
       ),
     );

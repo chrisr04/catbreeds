@@ -1,18 +1,30 @@
-import 'package:catbreeds/shared/widgets/organism/paginated_list_view/paginated_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:catbreeds/shared/widgets/widgets.dart';
 
 void main() {
+  late ScrollController scrollController;
+
+  setUp(() {
+    scrollController = ScrollController();
+  });
+
   group('PaginatedListView', () {
     testWidgets('Initial rendering', (WidgetTester tester) async {
       final children = List.generate(10, (index) => Text('Item $index'));
 
       await tester.pumpWidget(
         MaterialApp(
-          home: PaginatedListView(
-            onLoadNextPage: () {},
-            isLastPage: false,
-            children: children,
+          home: CustomScrollView(
+            controller: scrollController,
+            slivers: [
+              PaginatedSliverListView(
+                controller: scrollController,
+                onLoadNextPage: () {},
+                isLastPage: false,
+                children: children,
+              ),
+            ],
           ),
         ),
       );
@@ -28,19 +40,25 @@ void main() {
 
       await tester.pumpWidget(
         MaterialApp(
-          home: PaginatedListView(
-            isLastPage: false,
-            onLoadNextPage: () {
-              isLoadingNextPage = true;
-            },
-            children: children,
+          home: CustomScrollView(
+            controller: scrollController,
+            slivers: [
+              PaginatedSliverListView(
+                controller: scrollController,
+                isLastPage: false,
+                onLoadNextPage: () {
+                  isLoadingNextPage = true;
+                },
+                children: children,
+              ),
+            ],
           ),
         ),
       );
 
       await tester.dragUntilVisible(
         find.text('Item 49'),
-        find.byType(PaginatedListView),
+        find.byType(CustomScrollView),
         const Offset(0.0, -100.0),
       );
 
@@ -56,19 +74,25 @@ void main() {
 
       await tester.pumpWidget(
         MaterialApp(
-          home: PaginatedListView(
-            isLastPage: true,
-            onLoadNextPage: () {
-              isLoadingNextPage = true;
-            },
-            children: children,
+          home: CustomScrollView(
+            controller: scrollController,
+            slivers: [
+              PaginatedSliverListView(
+                controller: scrollController,
+                isLastPage: true,
+                onLoadNextPage: () {
+                  isLoadingNextPage = true;
+                },
+                children: children,
+              ),
+            ],
           ),
         ),
       );
 
       await tester.dragUntilVisible(
         find.text('Item 49'),
-        find.byType(PaginatedListView),
+        find.byType(CustomScrollView),
         const Offset(0.0, -100.0),
       );
 

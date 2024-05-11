@@ -1,38 +1,53 @@
 part of '../page.dart';
 
 class HomeCatBreedList extends StatelessWidget {
-  const HomeCatBreedList({super.key});
+  const HomeCatBreedList({
+    super.key,
+    required this.scrollController,
+  });
+
+  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context) {
     final homeBloc = HomeBlocDependency.of(context);
 
-    return Expanded(
-      child: StreamBuilder(
-        stream: homeBloc.stream,
-        initialData: homeBloc.state,
-        builder: (context, snapshot) {
-          if (snapshot.data == null) return const SizedBox.shrink();
+    return StreamBuilder(
+      stream: homeBloc.stream,
+      initialData: homeBloc.state,
+      builder: (context, snapshot) {
+        if (snapshot.data == null) return const SizedBox.shrink();
 
-          final state = snapshot.data!;
-          final catBreeds = state.data.catBreeds;
-          final isLastPage = state.data.isLastPage;
+        final state = snapshot.data!;
+        final catBreeds = state.data.catBreeds;
+        final isLastPage = state.data.isLastPage;
 
-          return switch (state) {
-            HomeLoadingState() => const Center(
+        return switch (state) {
+          HomeLoadingState() => const SliverFillRemaining(
+              hasScrollBody: false,
+              child: Center(
                 child: CircularProgressIndicator(),
               ),
-            HomeFailureState() => ErrorView(
+            ),
+          HomeFailureState() => SliverFillRemaining(
+              hasScrollBody: false,
+              child: ErrorView(
                 message: state.message,
               ),
-            _ => catBreeds.isEmpty && isLastPage
-                ? const NoResult()
-                : PaginatedListView(
+            ),
+          _ => catBreeds.isEmpty && isLastPage
+              ? const SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: NoResult(),
+                )
+              : SliverPadding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppSpacing.md,
+                    vertical: AppSpacing.sl,
+                  ),
+                  sliver: PaginatedSliverListView(
+                    controller: scrollController,
                     isLastPage: state.data.isLastPage,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppSpacing.md,
-                      vertical: AppSpacing.sl,
-                    ),
                     onLoadNextPage: () {
                       homeBloc.events.add(
                         const LoadNextCatBreedsEvent(),
@@ -59,10 +74,10 @@ class HomeCatBreedList extends StatelessWidget {
                         );
                       },
                     ).toList(),
-                  )
-          };
-        },
-      ),
+                  ),
+                )
+        };
+      },
     );
   }
 
