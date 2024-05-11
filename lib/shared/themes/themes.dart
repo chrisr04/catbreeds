@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 part 'colors/colors.dart';
 part 'typography/typography.dart';
@@ -65,6 +66,12 @@ final appTheme = ThemeData(
       fontWeight: FontWeight.w400,
       fontSize: AppTypography.small,
       color: AppColors.black,
+    ),
+  ),
+  appBarTheme: AppBarTheme(
+    systemOverlayStyle: SystemUiOverlayStyle(
+      statusBarColor: AppColors.black.withOpacity(0.1),
+      statusBarIconBrightness: Brightness.light,
     ),
   ),
 );

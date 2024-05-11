@@ -5,6 +5,7 @@ class HomeSearchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final paddingTop = MediaQuery.viewPaddingOf(context).top;
     return Container(
       decoration: BoxDecoration(
         color: Theme.of(context).primaryColor,
@@ -16,7 +17,7 @@ class HomeSearchBar extends StatelessWidget {
         horizontal: AppSpacing.md,
         vertical: AppSpacing.lg,
       ).copyWith(
-        top: AppSpacing.md,
+        top: paddingTop + AppSpacing.md,
       ),
       child: Column(
         children: [

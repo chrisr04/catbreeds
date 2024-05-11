@@ -35,15 +35,13 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: Column(
-          children: [
-            HomeSearchBar(),
-            HomeCatBreedList(),
-          ],
-        ),
+    return const Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: Column(
+        children: [
+          HomeSearchBar(),
+          HomeCatBreedList(),
+        ],
       ),
     );
   }
