@@ -18,11 +18,11 @@ class CatImageView extends StatelessWidget {
           child: catBreed.image.url.isNotEmpty
               ? Image.network(
                   catBreed.image.url,
-                  height: size.height * 0.45,
+                  height: size.height * 0.4,
                   fit: BoxFit.cover,
                 )
               : SizedBox(
-                  height: size.height * 0.45,
+                  height: size.height * 0.4,
                   child: ColoredBox(
                     color: Theme.of(context).colorScheme.onSurface,
                     child: const AppAssetImage(

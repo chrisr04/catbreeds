@@ -15,12 +15,14 @@ class HomeSearchBar extends StatelessWidget {
       padding: const EdgeInsets.symmetric(
         horizontal: AppSpacing.md,
         vertical: AppSpacing.lg,
+      ).copyWith(
+        top: AppSpacing.md,
       ),
       child: Column(
         children: [
           const AppAssetImage(
             path: AppAssets.catbreedsWhiteLogo,
-            height: 80.0,
+            height: 75.0,
           ),
           const SpacingM(),
           SearchInput(
