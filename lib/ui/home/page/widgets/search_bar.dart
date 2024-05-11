@@ -19,7 +19,7 @@ class HomeSearchBar extends StatelessWidget {
       child: Column(
         children: [
           const AppAssetImage(
-            url: AppAssets.catbreedsWhiteLogo,
+            path: AppAssets.catbreedsWhiteLogo,
             height: 80.0,
           ),
           const SpacingM(),

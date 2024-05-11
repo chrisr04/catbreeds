@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 class AppAssetImage extends StatelessWidget {
   const AppAssetImage({
     super.key,
-    required this.url,
+    required this.path,
     this.width,
     this.height,
     this.fit,
   });
 
-  final String url;
+  final String path;
   final double? width;
   final double? height;
   final BoxFit? fit;
@@ -17,7 +17,7 @@ class AppAssetImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Image.asset(
-      url,
+      path,
       width: width,
       height: height,
       fit: fit,

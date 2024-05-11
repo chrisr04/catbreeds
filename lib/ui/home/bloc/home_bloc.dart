@@ -104,7 +104,7 @@ class HomeBloc {
       );
 
       _output.add(
-        HomeNextPageLoadedState(
+        HomeLoadedState(
           state.data.copyWith(
             catBreeds: catBreeds,
             isLastPage: true,

@@ -34,7 +34,7 @@ class HomeStateData {
   const HomeStateData({
     this.catBreeds = const [],
     this.page = 0,
-    this.limit = 20,
+    this.limit = 10,
     this.isLastPage = false,
   });
 

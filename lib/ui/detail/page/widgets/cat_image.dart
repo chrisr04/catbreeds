@@ -26,7 +26,7 @@ class CatImage extends StatelessWidget {
                   child: ColoredBox(
                     color: Theme.of(context).colorScheme.onSurface,
                     child: const AppAssetImage(
-                      url: AppAssets.catbreedsWhiteLogo,
+                      path: AppAssets.catbreedsWhiteLogo,
                     ),
                   ),
                 ),

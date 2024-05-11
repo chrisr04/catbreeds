@@ -14,6 +14,7 @@ class ErrorMessage extends StatelessWidget {
           Icons.error_outline_rounded,
           size: 55.0,
         ),
+        const SpacingS(),
         TextHeading5(message),
       ],
     );
