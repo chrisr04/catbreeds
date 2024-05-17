@@ -6,7 +6,7 @@ class HomeHeaderLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final paddingTop = MediaQuery.viewPaddingOf(context).top;
-    final size = MediaQuery.of(context).size;
+    final size = MediaQuery.sizeOf(context);
     return SizedBox(
       width: size.width,
       child: Padding(

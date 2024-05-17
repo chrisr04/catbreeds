@@ -21,19 +21,17 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late final _homeBloc = HomeBlocDependency.of(context);
-  final scrollController = ScrollController();
+  final _scrollController = ScrollController();
 
   @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _homeBloc.events.add(
-        const LoadCatBreedsEvent(
-          page: 0,
-          limit: 10,
-        ),
-      );
-    });
+  void didChangeDependencies() {
+    _homeBloc.events.add(
+      const LoadCatBreedsEvent(
+        page: 0,
+        limit: 10,
+      ),
+    );
+    super.didChangeDependencies();
   }
 
   @override
@@ -41,11 +39,11 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: CustomScrollView(
-        controller: scrollController,
+        controller: _scrollController,
         slivers: [
           const HomeHeader(),
           HomeCatBreedList(
-            scrollController: scrollController,
+            scrollController: _scrollController,
           ),
         ],
       ),
@@ -55,6 +53,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void dispose() {
     _homeBloc.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 }
