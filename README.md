@@ -27,5 +27,3 @@ Luego ejecuta el siguiente comando para levantar la aplicación, recuerda tener 
 ```
 flutter run
 ```
-
-**Nota:** La api key proporcionada para el ejercicio no funcionaba correctamente debido a que no retornaba la información completa. Por tal razon fue necesario generar una nueva directamente de la página oficial https://thecatapi.com/
