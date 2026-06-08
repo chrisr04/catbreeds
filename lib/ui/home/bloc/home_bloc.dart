@@ -34,7 +34,6 @@ class HomeBloc {
       case SearchCatBreedEvent():
         _onSearchCatBreedEvent(event);
         break;
-      default:
     }
   }
 
